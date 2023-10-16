@@ -10,5 +10,7 @@
 ## Screenshots:
 
 ![Main Page](screenshots/sc1.png)
+
 ![Add Task Page](screenshots/sc3.png)
+
 ![All Tasks Page](screenshots/sc2.png)
