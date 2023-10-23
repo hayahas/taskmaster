@@ -24,15 +24,24 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         Intent callingIntent = getIntent();
         String taskTitle = null;
+        String taskBody = null;
+        String taskState = null;
 
         if(callingIntent != null){
             taskTitle = callingIntent.getStringExtra(MainActivity.TASK_TITLE_TAG);
+            taskBody = callingIntent.getStringExtra(MainActivity.TASK_BODY_TAG);
+            taskState = callingIntent.getStringExtra(MainActivity.TASK_STATE_TAG);
         }
 
         TextView taskSelected = (TextView) findViewById(R.id.taskTitleInput);
+        TextView taskSelectedBody = (TextView) findViewById(R.id.taskBody);
+        TextView taskSelectedState = (TextView) findViewById(R.id.taskState);
+
 
         if (taskTitle != null){
             taskSelected.setText(taskTitle);
+            taskSelectedBody.setText(taskBody);
+            taskSelectedState.setText(taskState);
         }else {
             taskSelected.setText("Task not specified");
         }
