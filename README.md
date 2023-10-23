@@ -24,3 +24,4 @@
 ![Settings Page](screenshots/settings.png)
 ### Task Details page
 ![Task Details Page](screenshots/taskdetalis28.png)
+
