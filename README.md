@@ -10,12 +10,13 @@
  - you can change your username in Setting page and new username will be updated in your home page
  - in home page can scroll up and down between list of tasks
  - You can re-check your task details requirements and state if complete,in progress.. etc by clicking on it
+ - Whenever you add a task; your task title will be displayed on the home page and by clicking on it you can go to the details..
 
 
 ## Screenshots:
 
 ### Home page
-![Main Page](screenshots/homeLab28.png)
+![Main Page](screenshots/home29.png)
 ### Add Task page
 ![Add Task Page](screenshots/sc3.png)
 ### All Tasks page
@@ -23,5 +24,6 @@
 ### Settings page
 ![Settings Page](screenshots/settings.png)
 ### Task Details page
-![Task Details Page](screenshots/taskdetalis28.png)
+![Task Details Page](screenshots/details29.png)
+
 
