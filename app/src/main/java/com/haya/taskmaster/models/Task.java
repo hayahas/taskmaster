@@ -1,15 +1,35 @@
 package com.haya.taskmaster.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.haya.taskmaster.database.Converters;
+
+import java.util.Date;
+
+
+@Entity
 public class Task {
 
-  private  String title;
+    @PrimaryKey(autoGenerate = true)
+    public Long id;
+    private  String title;
     private  String body;
-    private String state;
+    java.util.Date dateCreated;
+    TaskStateEnums taskState;
 
-    public Task(String title, String body, String state) {
+//    public Task(String title, String body,String state) {
+//        this.title = title;
+//        this.body = body;
+//        this.state=state;
+//    }
+
+    public Task(String title, String body, Date dateCreated, TaskStateEnums taskState) {
         this.title = title;
         this.body = body;
-        this.state = state;
+        this.dateCreated = dateCreated;
+        this.taskState = taskState;
     }
 
     public String getTitle() {
@@ -28,11 +48,21 @@ public class Task {
         this.body = body;
     }
 
-    public String getState() {
-        return state;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
+
+    public TaskStateEnums getTaskState() {
+        return taskState;
+    }
+
+    public void setTaskState(TaskStateEnums taskState) {
+        this.taskState = taskState;
+    }
+
+
 }
