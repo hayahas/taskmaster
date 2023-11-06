@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     TaskMasterDatabase taskMasterDatabase;
 
     List <Task> tasks =null ;
-//
+
     TasksRecyclerViewAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//tasksSetup();
 
 recyclerViewSetup();
 
@@ -93,71 +92,9 @@ public void recyclerViewSetup() {
     tasksRecycler.setLayoutManager(layout);
 
 
-//    List<Task> tasks = new ArrayList<>();
-
-//    tasks.add(new Task("Task 1", "Install Android Studio", "Complete"));
-//    tasks.add(new Task("Task 2", "Install Emulator", "Complete"));
-//    tasks.add(new Task("Task 3", "Setup first Android app", "Complete"));
-//    tasks.add(new Task("Task 4", "Name the new project Task Master", "Assigned"));
-//    tasks.add(new Task("Task 5", "User can Add tasks", "Assigned"));
-//    tasks.add(new Task("Task 6", "User can display all tasks", "In progress"));
-//    tasks.add(new Task("Task 7", "User can display all tasks in recycler View", "In Progress"));
-//    tasks.add(new Task("Task 8", "User tasks added to database", "new"));
-//    tasks.add(new Task("Task 9", ".....", "new"));
-//    tasks.add(new Task("Task 10", "anythingggg", "new"));
-//    tasks.add(new Task("Task 11", "print Hello world", "new"));
-//    tasks.add(new Task("Task 12", "App ly changes", "new"));
-
     adapter = new TasksRecyclerViewAdapter(tasks, this);
     tasksRecycler.setAdapter(adapter);
 }
-
-
-//    public void tasksSetup(){
-//        TextView task1=(TextView) findViewById(R.id.task1);
-//        TextView task2=(TextView) findViewById(R.id.task2);
-//        TextView task3=(TextView) findViewById(R.id.task3);
-//
-//        task1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SharedPreferences.Editor edit= sharedPreferences.edit();
-//                String taskTitle = ((TextView) findViewById(R.id.task1)).getText().toString();
-//                edit.putString(TASK_TITLE_TAG,taskTitle);
-//                edit.apply();
-//                Intent goToTask1Details=new Intent(MainActivity.this,TaskDetailsActivity.class);
-//                goToTask1Details.putExtra(TASK_TITLE_TAG,taskTitle);
-//                startActivity(goToTask1Details);
-//            }
-//        });
-//
-//        task2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SharedPreferences.Editor edit= sharedPreferences.edit();
-//                String taskTitle = ((TextView) findViewById(R.id.task2)).getText().toString();
-//                edit.putString(TASK_TITLE_TAG,taskTitle);
-//                edit.apply();
-//                Intent goToTask2Details=new Intent(MainActivity.this,TaskDetailsActivity.class);
-//                goToTask2Details.putExtra(TASK_TITLE_TAG,taskTitle);
-//                startActivity(goToTask2Details);
-//            }
-//        });
-//
-//        task3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SharedPreferences.Editor edit= sharedPreferences.edit();
-//                String taskTitle = ((TextView) findViewById(R.id.task3)).getText().toString();
-//                edit.putString(TASK_TITLE_TAG,taskTitle);
-//                edit.apply();
-//                Intent goToTask3Details=new Intent(MainActivity.this,TaskDetailsActivity.class);
-//                goToTask3Details.putExtra(TASK_TITLE_TAG,taskTitle);
-//                startActivity(goToTask3Details);
-//            }
-//        });
-//    }
-
 
     @Override
     protected void onResume() {

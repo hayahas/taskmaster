@@ -12,6 +12,12 @@
  - You can re-check your task details requirements and state if complete,in progress.. etc by clicking on it
  - Whenever you add a task; your task title will be displayed on the home page and by clicking on it you can go to the details..
 
+## Activities tested using Espresso Testing :
+
+- AddTaskActivity
+- SettingsActivity
+- TaskDetailsActivity
+
 
 ## Screenshots:
 
