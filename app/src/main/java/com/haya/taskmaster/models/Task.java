@@ -1,18 +1,13 @@
 package com.haya.taskmaster.models;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
-import com.haya.taskmaster.database.Converters;
 
 import java.util.Date;
 
 
-@Entity
+
 public class Task {
 
-    @PrimaryKey(autoGenerate = true)
     public Long id;
     private  String title;
     private  String body;

@@ -1,7 +1,6 @@
 package com.haya.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -10,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.haya.taskmaster.database.TaskMasterDatabase;
 import com.haya.taskmaster.models.Task;
 import com.haya.taskmaster.models.TaskStateEnums;
 
@@ -18,7 +16,7 @@ import java.util.Date;
 
 public class AddTaskActivity extends AppCompatActivity {
 
-    TaskMasterDatabase taskMasterDatabase;
+
     public static final String DATABASE_NAME="taskmaster";
 
     @Override
@@ -27,12 +25,7 @@ public class AddTaskActivity extends AppCompatActivity {
         setContentView(R.layout.add_tasks);
 
 
-        taskMasterDatabase = Room.databaseBuilder(
-                        getApplicationContext(), TaskMasterDatabase.class, DATABASE_NAME
-                )
-                .fallbackToDestructiveMigration()
-                .allowMainThreadQueries()
-                .build();
+
 
         Spinner taskState = (Spinner) findViewById(R.id.taskStateSpinner);
 
@@ -56,7 +49,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
            );
 
-            taskMasterDatabase.taskDAO().insertToTask(newTask);
+//            taskMasterDatabase.taskDAO().insertToTask(newTask);
 
         });
 
