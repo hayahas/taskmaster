@@ -39,24 +39,27 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
     @Override
     public void onBindViewHolder(@NonNull taskViewHolder holder, int position) {
         TextView taskFragment = (TextView) holder.itemView.findViewById(R.id.taskFragmentTextView);
-        String taskTitle= tasks.get(position).getTitle();
-        String taskBody= tasks.get(position).getBody();
-        String taskState= String.valueOf(tasks.get(position).getTaskState());
-        taskFragment.setText(taskTitle);
+//        String taskTitle= tasks.get(position).getTitle();
+//        String taskBody= tasks.get(position).getBody();
+//        String taskState= String.valueOf(tasks.get(position).getTaskState());
+//        taskFragment.setText(taskTitle);
 
         View taskViewHolder = holder.itemView;
         taskViewHolder.setOnClickListener(v -> {
             Intent goToDetailsFromRecycler = new Intent(callingView, TaskDetailsActivity.class);
-            goToDetailsFromRecycler.putExtra(MainActivity.TASK_TITLE_TAG,taskTitle);
-            goToDetailsFromRecycler.putExtra(MainActivity.TASK_BODY_TAG,taskBody);
-            goToDetailsFromRecycler.putExtra(MainActivity.TASK_STATE_TAG,taskState);
+//            goToDetailsFromRecycler.putExtra(MainActivity.TASK_TITLE_TAG,taskTitle);
+//            goToDetailsFromRecycler.putExtra(MainActivity.TASK_BODY_TAG,taskBody);
+//            goToDetailsFromRecycler.putExtra(MainActivity.TASK_STATE_TAG,taskState);
             callingView.startActivity(goToDetailsFromRecycler);
         });
     }
 
     @Override
     public int getItemCount() {
-        return tasks.size();
+
+//        return tasks.size();
+
+        return 4;
     }
 
     public static class taskViewHolder extends RecyclerView.ViewHolder {
