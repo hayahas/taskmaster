@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "taskmaster",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 60,
+      "apiKeyExpirationDate": "2024-01-07T22:30:56.204Z",
+      "keyDescription": "api key for task model that will be generated in taskMaster db on aws"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
+  }
+}
