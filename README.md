@@ -18,7 +18,6 @@
 - SettingsActivity
 - TaskDetailsActivity
 
-- 
 ## Tools used :
 
  - Android Studio
