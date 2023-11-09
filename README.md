@@ -18,6 +18,14 @@
 - SettingsActivity
 - TaskDetailsActivity
 
+- 
+## Tools used :
+
+ - Android Studio
+ - Cmd for Windows
+ - AWS amplify
+ - DynamoDB
+
 
 ## Screenshots:
 
