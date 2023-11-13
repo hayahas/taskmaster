@@ -9,14 +9,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Task;
 import com.haya.taskmaster.adapter.TasksRecyclerViewAdapter;
-import com.haya.taskmaster.models.Task;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String TASK_TITLE_TAG="title";
     public static final String TASK_BODY_TAG="body";
     public static final String TASK_STATE_TAG="state";
+    public static final String TASK_DATE_CREATED="date";
+    public final String TAG = "mainActivity";
     public static final String DATABASE_NAME="taskmaster";
 
     List <Task> tasks =null ;
@@ -71,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+        tasks = new ArrayList<>();
+
+
 recyclerViewSetup();
 
     }
@@ -92,8 +103,25 @@ public void recyclerViewSetup() {
         String userTasks=sharedPreferences.getString(SettingsActivity.USERNAME_TAG,"My Tasks");
         ((TextView) findViewById(R.id.usernameTasks)).setText(getString(R.string.username_from_user_settings, userTasks));
 
+        Amplify.API.query(
+                ModelQuery.list(Task.class),
+                success -> {
+                    Log.i(TAG,"Read Task Successfully");
+                    tasks.clear();
+                    for(Task databaseTask : success.getData()){
+                        tasks.add(databaseTask);
+                    }
+                    runOnUiThread(() -> {
+                        adapter.notifyDataSetChanged();
+                    });
+                },
+                failure -> {
+                    Log.i(TAG,"Read Task Failed");
+                }
+        );
+
 //        tasks.clear();
 //        tasks.addAll(taskMasterDatabase.taskDAO().findAll());
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
     }
 }
