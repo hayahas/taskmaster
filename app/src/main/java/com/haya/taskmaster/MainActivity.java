@@ -15,9 +15,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.haya.taskmaster.adapter.TasksRecyclerViewAdapter;
 
 
@@ -81,8 +83,43 @@ public class MainActivity extends AppCompatActivity {
 
         tasks = new ArrayList<>();
 
+        Team team1=Team.builder()
+                .teamName("Team1")
+                .email("team1@gmail.com")
+                .build();
 
-recyclerViewSetup();
+        Team team2=Team.builder()
+                .teamName("Team2")
+                .email("team2@gmail.com")
+                .build();
+
+        Team team3=Team.builder()
+                .teamName("Team3")
+                .email("team3@gmail.com")
+                .build();
+
+
+        Amplify.API.mutate(
+                ModelMutation.create(team1),
+                success -> Log.i(TAG,"Team Created Successfully"),
+                failure -> Log.i(TAG,"Team Creation Failed ")
+        );
+
+        Amplify.API.mutate(
+                ModelMutation.create(team2),
+                success -> Log.i(TAG,"Team Created Successfully"),
+                failure -> Log.i(TAG,"Team Creation Failed ")
+        );
+
+        Amplify.API.mutate(
+                ModelMutation.create(team3),
+                success -> Log.i(TAG,"Team Created Successfully"),
+                failure -> Log.i(TAG,"Team Creation Failed ")
+        );
+
+
+
+        recyclerViewSetup();
 
     }
 
