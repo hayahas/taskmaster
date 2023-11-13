@@ -14,6 +14,8 @@ type Task @model @auth(rules:[{allow:public}]){
   description: String
   dateCreated : AWSDateTime
   taskState: taskStateEnums
+  teamId :ID! @index(name:"teamTasks", sortKeyFields: ["name"])
+  taskTeam : Team @belongsTo(fields:["id"])
 }
 
 enum taskStateEnums {
@@ -21,4 +23,10 @@ COMPLETE,
 INPROGRESS,
 ASSIGNED,
 NEW
- }
+}
+type Team @model @auth(rules:[{allow:public}]){
+  id: ID!
+  teamName: String!
+  email: String
+  tasks : [Task] @hasMany(indexName: "teamTasks", fields:["id"])
+}

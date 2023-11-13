@@ -40,6 +40,15 @@ subscription OnCreateTask($filter: ModelSubscriptionTaskFilterInput) {
     description
     dateCreated
     taskState
+    teamId
+    taskTeam {
+      id
+      teamName
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
     createdAt
     updatedAt
     __typename
@@ -53,6 +62,15 @@ subscription OnUpdateTask($filter: ModelSubscriptionTaskFilterInput) {
     description
     dateCreated
     taskState
+    teamId
+    taskTeam {
+      id
+      teamName
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
     createdAt
     updatedAt
     __typename
@@ -66,6 +84,60 @@ subscription OnDeleteTask($filter: ModelSubscriptionTaskFilterInput) {
     description
     dateCreated
     taskState
+    teamId
+    taskTeam {
+      id
+      teamName
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnCreateTeam($filter: ModelSubscriptionTeamFilterInput) {
+  onCreateTeam(filter: $filter) {
+    id
+    teamName
+    email
+    tasks {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdateTeam($filter: ModelSubscriptionTeamFilterInput) {
+  onUpdateTeam(filter: $filter) {
+    id
+    teamName
+    email
+    tasks {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeleteTeam($filter: ModelSubscriptionTeamFilterInput) {
+  onDeleteTeam(filter: $filter) {
+    id
+    teamName
+    email
+    tasks {
+      nextToken
+      __typename
+    }
     createdAt
     updatedAt
     __typename
