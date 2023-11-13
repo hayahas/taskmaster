@@ -29,14 +29,14 @@
 ## Screenshots:
 
 ### Home page
-![Main Page](screenshots/home29.png)
+![Main Page](screenshots/home32.png) 
 ### Add Task page
-![Add Task Page](screenshots/sc3.png)
+![Add Task Page](screenshots/addTas32.png)
 ### All Tasks page
 ![All Tasks Page](screenshots/sc2.png)
 ### Settings page
 ![Settings Page](screenshots/settings.png)
 ### Task Details page
-![Task Details Page](screenshots/details29.png)
+![Task Details Page](screenshots/details32.png)
 
 
