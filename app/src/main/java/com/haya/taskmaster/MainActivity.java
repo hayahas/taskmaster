@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TASK_BODY_TAG="body";
     public static final String TASK_STATE_TAG="state";
     public static final String TASK_DATE_CREATED="date";
+    public static final String TASK_TEAM_TAG="team";
     public final String TAG = "mainActivity";
     public static final String DATABASE_NAME="taskmaster";
 
@@ -50,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         Button allTasksButton = (Button) findViewById(R.id.allTasksbtn);
         ImageView settingsButton = (ImageView) findViewById(R.id.settingImgBtn);
 
-
-//        tasks=taskMasterDatabase.taskDAO().findAll();
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,41 +82,39 @@ public class MainActivity extends AppCompatActivity {
 
         tasks = new ArrayList<>();
 
-        Team team1=Team.builder()
-                .teamName("Team1")
-                .email("team1@gmail.com")
-                .build();
-
-        Team team2=Team.builder()
-                .teamName("Team2")
-                .email("team2@gmail.com")
-                .build();
-
-        Team team3=Team.builder()
-                .teamName("Team3")
-                .email("team3@gmail.com")
-                .build();
-
-
-        Amplify.API.mutate(
-                ModelMutation.create(team1),
-                success -> Log.i(TAG,"Team Created Successfully"),
-                failure -> Log.i(TAG,"Team Creation Failed ")
-        );
-
-        Amplify.API.mutate(
-                ModelMutation.create(team2),
-                success -> Log.i(TAG,"Team Created Successfully"),
-                failure -> Log.i(TAG,"Team Creation Failed ")
-        );
-
-        Amplify.API.mutate(
-                ModelMutation.create(team3),
-                success -> Log.i(TAG,"Team Created Successfully"),
-                failure -> Log.i(TAG,"Team Creation Failed ")
-        );
-
-
+//        Team team1=Team.builder()
+//                .teamName("Frontend Team")
+//                .email("frontendTeam@gmail.com")
+//                .build();
+//
+//        Team team2=Team.builder()
+//                .teamName("Backend Team")
+//                .email("backendTeam@gmail.com")
+//                .build();
+//
+//        Team team3=Team.builder()
+//                .teamName("Database Team")
+//                .email("databaseTeam@gmail.com")
+//                .build();
+//
+//
+//        Amplify.API.mutate(
+//                ModelMutation.create(team1),
+//                success -> Log.i(TAG,"MainActivity() : Team Created Successfully"),
+//                failure -> Log.i(TAG,"MainActivity() : Team Creation Failed ")
+//        );
+//
+//        Amplify.API.mutate(
+//                ModelMutation.create(team2),
+//                success -> Log.i(TAG,"MainActivity() : Team Created Successfully"),
+//                failure -> Log.i(TAG,"MainActivity() : Team Creation Failed ")
+//        );
+//
+//        Amplify.API.mutate(
+//                ModelMutation.create(team3),
+//                success -> Log.i(TAG,"MainActivity() : Team Created Successfully"),
+//                failure -> Log.i(TAG,"MainActivity() : Team Creation Failed ")
+//        );
 
         recyclerViewSetup();
 
@@ -139,6 +136,8 @@ public void recyclerViewSetup() {
 
         String userTasks=sharedPreferences.getString(SettingsActivity.USERNAME_TAG,"My Tasks");
         ((TextView) findViewById(R.id.usernameTasks)).setText(getString(R.string.username_from_user_settings, userTasks));
+        String userTeam=sharedPreferences.getString(SettingsActivity.USER_TEAM_TAG,"My Team");
+        ((TextView) findViewById(R.id.userTeam)).setText(getString(R.string.user_team_from_user_settings, userTeam));
 
         Amplify.API.query(
                 ModelQuery.list(Task.class),
@@ -146,7 +145,12 @@ public void recyclerViewSetup() {
                     Log.i(TAG,"Read Task Successfully");
                     tasks.clear();
                     for(Task databaseTask : success.getData()){
-                        tasks.add(databaseTask);
+                        String teamName= "Backend Team";
+//                        if(databaseTask.getTaskTeam().getTeamName().equals(teamName)){
+                            tasks.add(databaseTask);
+                        System.out.println(databaseTask.getName()+ "  " +  databaseTask.getTaskTeam());
+//                        }
+
                     }
                     runOnUiThread(() -> {
                         adapter.notifyDataSetChanged();
@@ -157,8 +161,5 @@ public void recyclerViewSetup() {
                 }
         );
 
-//        tasks.clear();
-//        tasks.addAll(taskMasterDatabase.taskDAO().findAll());
-//        adapter.notifyDataSetChanged();
     }
 }

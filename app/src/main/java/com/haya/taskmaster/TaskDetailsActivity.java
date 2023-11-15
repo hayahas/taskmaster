@@ -35,34 +35,21 @@ public class TaskDetailsActivity extends AppCompatActivity {
         String taskBody = null;
         String taskState = null;
         String taskDate = null;
-//
-//        DateFormat dateCreatedIso8061InputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
-//        dateCreatedIso8061InputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-//        DateFormat dateCreatedOutputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        dateCreatedOutputFormat.setTimeZone(TimeZone.getDefault());
-//        String dateCreatedString = "";
-//
-//        try {
-//            {
-//                Date dateCreatedJavaDate = dateCreatedIso8061InputFormat.parse(product.getDateCreated().format());
-//                if (dateCreatedJavaDate != null){
-//                    dateCreatedString = dateCreatedOutputFormat.format(dateCreatedJavaDate);
-//                }
-//            }
-//        }catch (ParseException e){
-//            throw new RuntimeException(e);
-//        }
+//        String taskTeam = null;
+
         if(callingIntent != null){
             taskTitle = callingIntent.getStringExtra(MainActivity.TASK_TITLE_TAG);
             taskBody = callingIntent.getStringExtra(MainActivity.TASK_BODY_TAG);
             taskState = callingIntent.getStringExtra(MainActivity.TASK_STATE_TAG);
             taskDate = callingIntent.getStringExtra(MainActivity.TASK_DATE_CREATED);
+//            taskTeam = callingIntent.getStringExtra(MainActivity.TASK_TEAM_TAG);
         }
 
         TextView taskSelected = (TextView) findViewById(R.id.taskTitleInput);
         TextView taskSelectedBody = (TextView) findViewById(R.id.taskBody);
         TextView taskSelectedState = (TextView) findViewById(R.id.taskState);
         TextView taskDateCreated = (TextView) findViewById(R.id.taskDate);
+//        TextView taskTeamAssigned = (TextView) findViewById(R.id.taskTeam);
 
 
         if (taskTitle != null){
@@ -70,6 +57,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
             taskSelectedBody.setText(taskBody);
             taskSelectedState.setText(taskState);
             taskDateCreated.setText(taskDate);
+//            taskTeamAssigned.setText(taskTeam);
         }else {
             taskSelected.setText("Task not specified");
         }
