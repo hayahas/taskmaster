@@ -11,15 +11,26 @@
         android:id="@+id/usernameTasks"
         android:layout_width="232dp"
         android:layout_height="39dp"
+        android:layout_marginTop="100dp"
         android:text="My Tasks"
         android:textColor="#B7201919"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userTeam"
+        android:layout_width="232dp"
+        android:layout_height="39dp"
+        android:text="TeamName"
+        android:textColor="#B7201919"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameTasks" />
 
     <Button
         android:id="@+id/addTaskbtn"
@@ -59,45 +70,45 @@
         app:layout_constraintVertical_bias="0.222"
         app:srcCompat="@drawable/settings" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/task2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:text="Task 2"-->
-<!--        android:textColor="#CD3E3E"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.846"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/task1" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/task2"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:text="Task 2"-->
+    <!--        android:textColor="#CD3E3E"-->
+    <!--        android:textSize="18sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.846"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/task1" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/task3"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:text="Task 3"-->
-<!--        android:textColor="#DD1111"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.846"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/task2" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/task3"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:text="Task 3"-->
+    <!--        android:textColor="#DD1111"-->
+    <!--        android:textSize="18sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.846"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/task2" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/task1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="88dp"-->
-<!--        android:text="Task 1"-->
-<!--        android:textColor="#EC3939"-->
-<!--        android:textColorHint="#8A1414"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.846"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/usernameTasks" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/task1"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="88dp"-->
+    <!--        android:text="Task 1"-->
+    <!--        android:textColor="#EC3939"-->
+    <!--        android:textColorHint="#8A1414"-->
+    <!--        android:textSize="18sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.846"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/usernameTasks" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecycelerView"
@@ -108,7 +119,6 @@
         app:layout_constraintBottom_toTopOf="@+id/addTaskbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameTasks"
-        app:layout_constraintVertical_bias="0.436" />
+        app:layout_constraintTop_toBottomOf="@+id/userTeam" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

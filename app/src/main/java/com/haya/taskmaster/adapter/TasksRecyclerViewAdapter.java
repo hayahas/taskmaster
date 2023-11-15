@@ -51,7 +51,8 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
 
         String taskTitle= task.getName();
         String taskBody= task.getDescription();
-        String taskState= String.valueOf(tasks.get(position).getTaskState());//
+        String taskState= String.valueOf(tasks.get(position).getTaskState());
+//        String taskTeam= String.valueOf(tasks.get(position).getTaskTeam());
         String taskDate = "";
         DateFormat dateCreatedIso8061InputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
         dateCreatedIso8061InputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -81,6 +82,7 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
             goToDetailsFromRecycler.putExtra(MainActivity.TASK_BODY_TAG,taskBody);
             goToDetailsFromRecycler.putExtra(MainActivity.TASK_STATE_TAG,taskState);
             goToDetailsFromRecycler.putExtra(MainActivity.TASK_DATE_CREATED, finalDateCreatedString);
+//            goToDetailsFromRecycler.putExtra(MainActivity.TASK_TEAM_TAG,taskTeam);
             callingView.startActivity(goToDetailsFromRecycler);
         });
     }
