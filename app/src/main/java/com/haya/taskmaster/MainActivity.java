@@ -148,9 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i(TAG,"MainActivity(): Read Task Successfully");
                     tasks.clear();
                     for(Task databaseTask : success.getData()){
-
-                            String teamName = "Frontend Team";
-                            if (databaseTask.getTaskTeam().getTeamName().equals(teamName))
+                            if (databaseTask.getTaskTeam().getTeamName().equals(getString(R.string.user_team_from_user_settings, userTeam)))
                             {
                                 tasks.add(databaseTask);
                             }
