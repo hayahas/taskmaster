@@ -2,7 +2,6 @@ package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
 
-
 import java.util.List;
 import java.util.UUID;
 import java.util.Objects;
@@ -19,7 +18,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Todo type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Todos")
+@ModelConfig(pluralName = "Todos" )
 public final class Todo implements Model {
   public static final QueryField ID = field("Todo", "id");
   public static final QueryField NAME = field("Todo", "name");
@@ -205,5 +204,4 @@ public final class Todo implements Model {
   }
   
 
-  
 }

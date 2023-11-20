@@ -55,7 +55,7 @@ public class TaskDetailsTest {
         materialButton.perform(click());
 
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editTextTaskTitle), withText("Title"),
+                allOf(withId(R.id.editTextNewTaskTitle), withText("Title"),
                         childAtPosition(
                                 allOf(withId(R.id.addTaskActivity),
                                         childAtPosition(
@@ -66,7 +66,7 @@ public class TaskDetailsTest {
         appCompatEditText.perform(replaceText("testTask"));
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.editTextTaskTitle), withText("testTask"),
+                allOf(withId(R.id.editTextNewTaskTitle), withText("testTask"),
                         childAtPosition(
                                 allOf(withId(R.id.addTaskActivity),
                                         childAtPosition(
@@ -77,7 +77,7 @@ public class TaskDetailsTest {
         appCompatEditText2.perform(closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.editTextTaskDescription), withText("Description"),
+                allOf(withId(R.id.editTextNewTaskDescription), withText("Description"),
                         childAtPosition(
                                 allOf(withId(R.id.addTaskActivity),
                                         childAtPosition(
@@ -88,7 +88,7 @@ public class TaskDetailsTest {
         appCompatEditText3.perform(click());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.editTextTaskDescription), withText("Description"),
+                allOf(withId(R.id.editTextNewTaskDescription), withText("Description"),
                         childAtPosition(
                                 allOf(withId(R.id.addTaskActivity),
                                         childAtPosition(
@@ -99,7 +99,7 @@ public class TaskDetailsTest {
         appCompatEditText4.perform(replaceText("Test Task Description"));
 
         ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.editTextTaskDescription), withText("Test Task Description"),
+                allOf(withId(R.id.editTextNewTaskDescription), withText("Test Task Description"),
                         childAtPosition(
                                 allOf(withId(R.id.addTaskActivity),
                                         childAtPosition(
@@ -110,7 +110,7 @@ public class TaskDetailsTest {
         appCompatEditText5.perform(closeSoftKeyboard());
 
         ViewInteraction appCompatSpinner = onView(
-                allOf(withId(R.id.taskStateSpinner),
+                allOf(withId(R.id.newTaskStateSpinner),
                         childAtPosition(
                                 allOf(withId(R.id.addTaskActivity),
                                         childAtPosition(

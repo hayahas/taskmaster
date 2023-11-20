@@ -15,7 +15,7 @@ type Task @model @auth(rules:[{allow:public}]){
   dateCreated : AWSDateTime
   taskState: taskStateEnums
   teamId :ID! @index(name:"teamTasks", sortKeyFields: ["name"])
-  taskTeam : Team @belongsTo(fields:["id"])
+  taskTeam : Team @belongsTo(fields:["teamId"])
 }
 
 enum taskStateEnums {

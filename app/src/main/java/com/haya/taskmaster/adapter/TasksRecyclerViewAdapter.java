@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.haya.taskmaster.EditTaskActivity;
 import com.haya.taskmaster.MainActivity;
 import com.haya.taskmaster.R;
 import com.haya.taskmaster.TaskDetailsActivity;
@@ -48,11 +49,11 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
     public void onBindViewHolder(@NonNull taskViewHolder holder, int position) {
         TextView taskFragment = (TextView) holder.itemView.findViewById(R.id.taskFragmentTextView);
         Task task = tasks.get(position);
-
+        String taskId= task.getId();
         String taskTitle= task.getName();
         String taskBody= task.getDescription();
         String taskState= String.valueOf(tasks.get(position).getTaskState());
-//        String taskTeam= String.valueOf(tasks.get(position).getTaskTeam());
+        String taskTeam= String.valueOf(tasks.get(position).getTaskTeam());
         String taskDate = "";
         DateFormat dateCreatedIso8061InputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
         dateCreatedIso8061InputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -77,10 +78,11 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
         String finalDateCreatedString = taskDate;
 
         taskViewHolder.setOnClickListener(v -> {
-            Intent goToDetailsFromRecycler = new Intent(callingView, TaskDetailsActivity.class);
+            Intent goToDetailsFromRecycler = new Intent(callingView, EditTaskActivity.class);
             goToDetailsFromRecycler.putExtra(MainActivity.TASK_TITLE_TAG,taskTitle);
             goToDetailsFromRecycler.putExtra(MainActivity.TASK_BODY_TAG,taskBody);
             goToDetailsFromRecycler.putExtra(MainActivity.TASK_STATE_TAG,taskState);
+            goToDetailsFromRecycler.putExtra(MainActivity.TASK_ID_TAG,taskId);
             goToDetailsFromRecycler.putExtra(MainActivity.TASK_DATE_CREATED, finalDateCreatedString);
 //            goToDetailsFromRecycler.putExtra(MainActivity.TASK_TEAM_TAG,taskTeam);
             callingView.startActivity(goToDetailsFromRecycler);

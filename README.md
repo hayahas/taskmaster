@@ -42,6 +42,11 @@
 
 ### Lab 34, 15/11/2023 :
 
+- Edit Task Activity added.
+- User can update data about specific task.
+- User can delete specific task.
+- All changes are updated on DynamoDb.
+
 
 
 ## Screenshots:
