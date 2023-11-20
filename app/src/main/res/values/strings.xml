@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">TaskMaster</string>
     <string name="username_from_user_settings"> Tasks by : %1$s</string>
-    <string name="user_team_from_user_settings"> Team : %1$s</string>
+    <string name="user_team_from_user_settings"> %1$s</string>
     <string name="task_title_from_Home">  Details of : %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Blank Task </string>
+    <string name="title_activity_edit_task">EditTaskActivity</string>
 </resources>

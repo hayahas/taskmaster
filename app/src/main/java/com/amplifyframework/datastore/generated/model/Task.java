@@ -23,7 +23,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Task type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Tasks", authRules = {
+@ModelConfig(pluralName = "Tasks",  authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 @Index(name = "teamTasks", fields = {"teamId","name"})
@@ -293,5 +293,4 @@ public final class Task implements Model {
   }
   
 
-  
 }

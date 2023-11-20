@@ -1,4 +1,4 @@
-package com.haya.taskmaster;
+package com.amplifyframework.datastore.generated.model;
 
 import android.app.Application;
 import android.util.Log;

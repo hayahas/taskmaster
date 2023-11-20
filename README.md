@@ -39,22 +39,28 @@
 - Added Many to Many Relationship between tasks table and teams
 - Teams are added, user cannot add Teams
 - User can assign the task while adding it to specific team
+- Tasks are filtered Based on the user team chosen in Settings.
 
 ### Lab 34, 15/11/2023 :
 
+- Edit Task Activity added.
+- User can update data about specific task.
+- User can delete specific task.
+- All changes are updated on DynamoDb.
 
 
 ## Screenshots:
 
 ### Home page
-![Main Page](screenshots/home32.png) 
+![Main Page](screenshots/home34.png) 
 ### Add Task page
 ![Add Task Page](screenshots/addtask33.png)
 ### All Tasks page
 ![All Tasks Page](screenshots/sc2.png)
 ### Settings page
 ![Settings Page](screenshots/settings33.png)
-
+### Edit Task page
+![Edit Task Page](screenshots/edittask34.png) 
 ### Task Details page
 ![Task Details Page](screenshots/details32.png)
 

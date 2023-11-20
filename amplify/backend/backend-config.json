@@ -7,9 +7,9 @@
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDate": "2024-01-12T22:16:52.756Z",
+              "apiKeyExpirationDate": "2024-01-19T11:41:10.014Z",
               "apiKeyExpirationDays": 60,
-              "description": "api key for team mpde will be generated in taskMaster db on aws"
+              "description": "data base schema edit"
             },
             "authenticationType": "API_KEY"
           }

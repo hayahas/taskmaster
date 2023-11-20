@@ -14,7 +14,6 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.amplifyframework.api.graphql.model.ModelMutation;
-import com.amplifyframework.core.Amplify;
 import com.amplifyframework.core.model.temporal.Temporal;
 
 import com.amplifyframework.datastore.generated.model.TaskStateEnums;
@@ -49,8 +48,8 @@ public class AddTaskActivity extends AppCompatActivity {
 
     public void setUpSpinners(){
 
-        taskStateSpinner = (Spinner) findViewById(R.id.taskStateSpinner);
-        teamsSpinner = (Spinner) findViewById(R.id.teamsSpinner);
+        taskStateSpinner = (Spinner) findViewById(R.id.newTaskStateSpinner);
+        teamsSpinner = (Spinner) findViewById(R.id.newTeamsSpinner);
         taskStateSpinner.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -102,8 +101,8 @@ public class AddTaskActivity extends AppCompatActivity {
 
 //            taskMasterDatabase.taskDAO().insertToTask(newTask);
 
-            String title = ((EditText) findViewById(R.id.editTextTaskTitle)).getText().toString();
-            String description = ((EditText) findViewById(R.id.editTextTaskDescription)).getText().toString();
+            String title = ((EditText) findViewById(R.id.editTextNewTaskTitle)).getText().toString();
+            String description = ((EditText) findViewById(R.id.editTextNewTaskDescription)).getText().toString();
             String dateCreated=  com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
             String selectedTeamString = teamsSpinner.getSelectedItem().toString();
 
