@@ -48,11 +48,27 @@
 - User can delete specific task.
 - All changes are updated on DynamoDb.
 
+### Lab 36, 20/11/2023 :
+
+- User can sign up to taskmaster application using email,username and password.
+- A verification code will be sent to user email to verify his email.
+- Once his email is verified he can login using his email and password.
+- Once the user log in he is navigated to the hom page where his nickname is displayed.
+- User can logout and log in using another account, or signup using another email.
+
 
 ## Screenshots:
 
-### Home page
-![Main Page](screenshots/home34.png) 
+### Home page before login
+![Main Page Before Login](screenshots/homebeforelogin36.png) 
+### Signup page
+![Signup Page](screenshots/signup36.png)
+### Verify Email page 
+![Verify Email Page](screenshots/verify36.png)
+### Login page
+![Login Page](screenshots/login36.png)
+### Home page after login
+![Main Page After Login](screenshots/homeafterlogin36.png)
 ### Add Task page
 ![Add Task Page](screenshots/addtask33.png)
 ### All Tasks page

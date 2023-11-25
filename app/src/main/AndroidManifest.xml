@@ -15,6 +15,17 @@
         android:theme="@style/Theme.TaskMaster"
         tools:targetApi="31">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VerifyAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false"
+            android:label="@string/title_activity_signup"
+            android:theme="@style/Theme.TaskMaster" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -27,7 +38,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".TaskDetailsActivity"
             android:exported="false">
@@ -47,7 +57,6 @@
             android:exported="false"
             android:label="@string/title_activity_edit_task"
             android:theme="@style/Theme.TaskMaster" />
-
         <activity
             android:name=".AllTasksActivity"
             android:exported="false">
