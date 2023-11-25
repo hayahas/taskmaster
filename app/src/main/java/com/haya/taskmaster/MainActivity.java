@@ -6,9 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
+import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -40,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
     Button addTaskButton;
     Button allTasksButton;
     ImageView settingsButton;
+    ImageView logoutButton;
+    Button signupButton;
+    Button loginButton;
+
     List <Task> tasks =null ;
 
     TasksRecyclerViewAdapter adapter;
@@ -56,8 +64,51 @@ public class MainActivity extends AppCompatActivity {
         setupAddTasksBtn();
         setupAllTasksBtn();
         setupSettingsBtn();
+        setupLogoutBtn();
+        setupSignupBtn();
+        setupLoginBtn();
     }
 
+    public void setupLoginBtn(){
+        loginButton  = (Button) findViewById(R.id.loginBtnMainPage);
+        loginButton.setOnClickListener(view -> {
+            Intent goToSignup=new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(goToSignup);
+        });
+    }
+    public void setupSignupBtn(){
+        signupButton  = (Button) findViewById(R.id.signupBtnMainPage);
+        signupButton.setOnClickListener(view -> {
+            Intent goToSignup=new Intent(MainActivity.this,SignupActivity.class);
+            startActivity(goToSignup);
+        });
+    }
+    public void setupLogoutBtn(){
+        logoutButton = (ImageView) findViewById(R.id.logoutBtnLogo);
+        logoutButton.setOnClickListener(v -> {
+
+            Amplify.Auth.signOut(
+                    () ->
+                    {
+                        Log.i(TAG,"Logout succeeded");
+                        runOnUiThread(() ->
+                        {
+                            ((TextView)findViewById(R.id.usernameTasks)).setText("");
+                        });
+                        Intent goToLogInIntent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(goToLogInIntent);
+                    },
+                    failure ->
+                    {
+                        Log.i(TAG, "Logout failed");
+                        runOnUiThread(() ->
+                        {
+                            Toast.makeText(MainActivity.this, "Log out failed", Toast.LENGTH_LONG);
+                        });
+                    }
+            );
+        });
+    }
     public void setupSettingsBtn(){
         settingsButton  = (ImageView) findViewById(R.id.settingImgBtn);
 
@@ -86,12 +137,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToAddTask);
         });
     }
-
     public void addTeamsToDBQueries(){
-                Team team1=Team.builder()
+        Team team1=Team.builder()
                 .teamName("Frontend Team")
                 .email("frontendTeam@gmail.com")
                 .build();
+
 
         Team team2=Team.builder()
                 .teamName("Backend Team")
@@ -158,6 +209,55 @@ public class MainActivity extends AppCompatActivity {
                 },
                 failure -> Log.i(TAG,"Read Task Failed")
        );
+
+        AuthUser authUser = Amplify.Auth.getCurrentUser();
+        String username=" ";
+        if (authUser == null){
+            Button signupButton = (Button) findViewById(R.id.signupBtnMainPage);
+            signupButton.setVisibility(View.VISIBLE);
+            TextView textSignup = (TextView) findViewById(R.id.textSignup);
+            textSignup.setVisibility(View.VISIBLE);
+            Button loginButton = (Button) findViewById(R.id.loginBtnMainPage);
+            loginButton.setVisibility(View.VISIBLE);
+            TextView textLogin = (TextView) findViewById(R.id.textLogin);
+            textLogin.setVisibility(View.VISIBLE);
+            ImageView logoutButton = (ImageView) findViewById(R.id.logoutBtnLogo);
+            logoutButton.setVisibility(View.INVISIBLE);
+        }else{
+            username = authUser.getUsername();
+            Log.i(TAG, "Username is: "+ username);
+            Button signupButton = (Button) findViewById(R.id.signupBtnMainPage);
+            signupButton.setVisibility(View.INVISIBLE);
+            TextView textSignup = (TextView) findViewById(R.id.textSignup);
+            textSignup.setVisibility(View.INVISIBLE);
+            Button loginButton = (Button) findViewById(R.id.loginBtnMainPage);
+            loginButton.setVisibility(View.INVISIBLE);
+            TextView textLogin = (TextView) findViewById(R.id.textLogin);
+            textLogin.setVisibility(View.INVISIBLE);
+            ImageView logoutButton = (ImageView) findViewById(R.id.logoutBtnLogo);
+            logoutButton.setVisibility(View.VISIBLE);
+
+            String username2 = username;
+            Amplify.Auth.fetchUserAttributes(
+                    success ->
+                    {
+                        Log.i(TAG, "Fetch user attributes succeeded for username: "+ username2);
+                        for (AuthUserAttribute userAttribute: success){
+                            if(userAttribute.getKey().getKeyString().equals("nickname")){
+                                String user = userAttribute.getValue();
+                                runOnUiThread(() ->
+                                {
+                                    ((TextView)findViewById(R.id.usernameTasks)).setText(user);
+                                });
+                            }
+                        }
+                    },
+                    failure ->
+                    {
+                        Log.i(TAG, "Fetch user attributes failed: "+failure.toString());
+                    }
+            );
+        }
 
     }
 }
