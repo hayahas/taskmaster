@@ -18,7 +18,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Todo type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Todos" )
+@ModelConfig(pluralName = "Todos")
 public final class Todo implements Model {
   public static final QueryField ID = field("Todo", "id");
   public static final QueryField NAME = field("Todo", "name");
@@ -204,4 +204,6 @@ public final class Todo implements Model {
   }
   
 
+
+  
 }

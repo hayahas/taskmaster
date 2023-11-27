@@ -17,10 +17,6 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.TaskStateEnums;
 import com.amplifyframework.datastore.generated.model.Team;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.os.Handler;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
