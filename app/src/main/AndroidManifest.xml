@@ -4,7 +4,7 @@
     package="com.haya.taskmaster">
 
     <application
-        android:name="com.amplifyframework.datastore.generated.model.taskMasterAmplifyApplication"
+        android:name=".taskMasterAmplifyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

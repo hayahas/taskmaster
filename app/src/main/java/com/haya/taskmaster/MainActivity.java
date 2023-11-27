@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,10 @@ import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.haya.taskmaster.adapter.TasksRecyclerViewAdapter;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -47,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
     ImageView logoutButton;
     Button signupButton;
     Button loginButton;
-
     List <Task> tasks =null ;
-
     TasksRecyclerViewAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,23 +72,51 @@ public class MainActivity extends AppCompatActivity {
         setupLogoutBtn();
         setupSignupBtn();
         setupLoginBtn();
+//        setupFileS3();
     }
 
-    public void setupLoginBtn(){
+
+    private void setupFileS3(){
+
+        String emptyFileName = "emptyFileName";
+        File emptyFile = new File(getApplicationContext().getFilesDir(), emptyFileName);
+
+        try{
+            BufferedWriter emptyFileBufferedWriter = new BufferedWriter(new FileWriter(emptyFile));
+            emptyFileBufferedWriter.append("New file from Lab 37\n testing S3");
+            emptyFileBufferedWriter.close();
+        }catch(IOException ioe){
+            Log.e(TAG, "MainActivity.setupFileS3() : Failed to write file Locally : " + emptyFileName);
+        }
+
+        String fileKey = "FirstS3File.txt";
+
+        Amplify.Storage.uploadFile(
+                fileKey,
+                emptyFile,
+                success ->{
+                    Log.i(TAG, "MainActivity.setupFileS3() : S3 file uploaded successfully : " + success.getKey());
+                },
+                failure -> {
+                    Log.e(TAG, "MainActivity.setupFileS3() : Failed to upload S3 file : " + failure.getMessage());
+                }
+        );
+    }
+    private void setupLoginBtn(){
         loginButton  = (Button) findViewById(R.id.loginBtnMainPage);
         loginButton.setOnClickListener(view -> {
             Intent goToSignup=new Intent(MainActivity.this,LoginActivity.class);
             startActivity(goToSignup);
         });
     }
-    public void setupSignupBtn(){
+    private void setupSignupBtn(){
         signupButton  = (Button) findViewById(R.id.signupBtnMainPage);
         signupButton.setOnClickListener(view -> {
             Intent goToSignup=new Intent(MainActivity.this,SignupActivity.class);
             startActivity(goToSignup);
         });
     }
-    public void setupLogoutBtn(){
+    private void setupLogoutBtn(){
         logoutButton = (ImageView) findViewById(R.id.logoutBtnLogo);
         logoutButton.setOnClickListener(v -> {
 
@@ -109,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             );
         });
     }
-    public void setupSettingsBtn(){
+    private void setupSettingsBtn(){
         settingsButton  = (ImageView) findViewById(R.id.settingImgBtn);
 
         settingsButton.setOnClickListener(view -> {
@@ -119,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void setupAllTasksBtn(){
+    private void setupAllTasksBtn(){
         allTasksButton = (Button) findViewById(R.id.allTasksbtn);
         allTasksButton.setOnClickListener(view -> {
 
@@ -128,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void setupAddTasksBtn(){
+    private void setupAddTasksBtn(){
         addTaskButton = (Button) findViewById(R.id.addTaskbtn);
         addTaskButton.setOnClickListener(view -> {
             System.out.println("Hello from the other side");
@@ -137,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToAddTask);
         });
     }
-    public void addTeamsToDBQueries(){
+    private void addTeamsToDBQueries(){
         Team team1=Team.builder()
                 .teamName("Frontend Team")
                 .email("frontendTeam@gmail.com")
@@ -173,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 failure -> Log.i(TAG,"MainActivity() : Team Creation Failed ")
         );
     }
-    public void recyclerViewSetup() {
+    private void recyclerViewSetup() {
         RecyclerView tasksRecycler = (RecyclerView) findViewById(R.id.tasksRecycelerView);
         RecyclerView.LayoutManager layout = new LinearLayoutManager(this);
         tasksRecycler.setLayoutManager(layout);

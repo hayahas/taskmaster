@@ -56,6 +56,11 @@
 - Once the user log in he is navigated to the hom page where his nickname is displayed.
 - User can logout and log in using another account, or signup using another email.
 
+### Lab 37, 22/11/2023 :
+- User can add an task image while adding the task from his own device
+- If user chose the wrong image ; he can delete it while before saving and choosing another 
+- In case saved user saved the image, it will be uploaded as file in S3 in aws
+- if no Image added no files will be uploaded on S3
 
 ## Screenshots:
 
@@ -70,7 +75,7 @@
 ### Home page after login
 ![Main Page After Login](screenshots/homeafterlogin36.png)
 ### Add Task page
-![Add Task Page](screenshots/addtask33.png)
+![Add Task Page](screenshots/addTask37.png) 
 ### All Tasks page
 ![All Tasks Page](screenshots/sc2.png)
 ### Settings page
