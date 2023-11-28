@@ -71,7 +71,7 @@
      ![Add Task page](screenshots/step3addTasklab38.png)
   
 - User can add image to the new task easily by sharing from the browser instead of saving it on his device, Steps :
-- 
+  
       ![Browser Page1](screenshots/image1lab38.png)
       ![Browser Page2](screenshots/image2lab38.png)
       ![Add Task page](screenshots/image3addTasklab38.png)
