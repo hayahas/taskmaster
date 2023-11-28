@@ -64,13 +64,11 @@
 - 
 ### Lab 38, 27/11/2023 :
 
-- User can add title of the new task easily by sharing it from browser or any other app.
-   - Steps :
+- User can add title of the new task easily by sharing it from browser or any other app, Steps :
      ![Browser Page1](screenshots/step1lab38.png)
      ![Browser Page2](screenshots/step2lab38.png)
      ![Add Task page](screenshots/step3addTasklab38.png)
-- User can add image to the new task easily by sharing from the browser instead of saving it on his device.
-     - Steps :
+- User can add image to the new task easily by sharing from the browser instead of saving it on his device, Steps :
       ![Browser Page1](screenshots/image1lab38.png)
       ![Browser Page2](screenshots/image2lab38.png)
       ![Add Task page](screenshots/image3addTasklab38.png)
