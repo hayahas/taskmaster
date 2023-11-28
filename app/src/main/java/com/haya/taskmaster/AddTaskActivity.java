@@ -69,6 +69,51 @@ public class AddTaskActivity extends AppCompatActivity {
         updateImageButtons();
 
     }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        Intent callingIntent = getIntent();
+
+        if(callingIntent != null && callingIntent.getType() != null && callingIntent.getType().equals("text/plain")){
+            String callingText = callingIntent.getStringExtra(Intent.EXTRA_TEXT);
+            String cleanText = cleanText(callingText);
+
+            ((EditText) findViewById(R.id.editTextNewTaskTitle)).setText(cleanText);
+        }
+
+        if(callingIntent != null && callingIntent.getType() != null && callingIntent.getType().startsWith("image")){
+            Uri incomingImageFileUri= callingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
+
+            if (incomingImageFileUri != null){
+                InputStream incomingImageFileInputStream = null;
+
+                try {
+                    incomingImageFileInputStream = getContentResolver().openInputStream(incomingImageFileUri);
+
+                    ImageView taskImage = findViewById(R.id.taskImgImageViewAddTaskPage);
+
+                    if (taskImage != null) {
+
+                        taskImage.setImageBitmap(BitmapFactory.decodeStream(incomingImageFileInputStream));
+                    }else {
+                        Log.e(TAG, "ImageView is null");
+                    }
+                }catch (FileNotFoundException fileNotFoundException){
+                    Log.e(TAG," Could not get file stream from the URI "+fileNotFoundException.getMessage(),fileNotFoundException);
+                }
+            }
+        }
+
+
+    }
+
+    private String cleanText(String text){
+        text = text.replaceAll("\\b(?:https?|ftp):\\/\\/\\S+\\b", "");
+        text = text.replaceAll("\"", "");
+        return text;
+    }
     private void setUpSpinners(){
 
         taskStateSpinner = (Spinner) findViewById(R.id.newTaskStateSpinner);
@@ -153,7 +198,6 @@ if(!s3ImageKey.isEmpty()){
         Snackbar.make(findViewById(R.id.addTaskActivity),"Task Added",Snackbar.LENGTH_SHORT).show();
 }
     }
-
     private void setupAddImgBtn(){
         addImgButton = (Button) findViewById(R.id.addImageBtnAddTaskPage);
 
@@ -162,7 +206,6 @@ if(!s3ImageKey.isEmpty()){
         });
 
     }
-
     private void launchImageSelectionIntent(){
 
         Intent imageFilePickingIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -211,7 +254,6 @@ if(!s3ImageKey.isEmpty()){
 
         return imagePickingActivityResultLauncher;
     }
-
     private void uploadInputStreamToS3(InputStream pickedImageInputStream, String pickedImageFilename,Uri pickedImageFileUri){
         Amplify.Storage.uploadInputStream(
                 pickedImageFilename,
@@ -242,7 +284,6 @@ if(!s3ImageKey.isEmpty()){
         );
 
     }
-
     private void setUpDeleteImageButton() {
         ImageView deleteImageButton = (ImageView) findViewById(R.id.deleteImageBtnLogo);
 //        String s3ImageKey = this.s3ImageKey;
@@ -279,19 +320,16 @@ if(!s3ImageKey.isEmpty()){
             }
         });
     }
-
     private void switchFromDeleteButtonToAddButton(ImageView deleteImageButton) {
         Button addImageButton = findViewById(R.id.addImageBtnAddTaskPage);
         deleteImageButton.setVisibility(View.INVISIBLE);
         addImageButton.setVisibility(View.VISIBLE);
     }
-
     private void switchFromAddButtonToDeleteButton(Button addImageButton) {
         ImageView deleteImageButton = findViewById(R.id.deleteImageBtnLogo);
         deleteImageButton.setVisibility(View.VISIBLE);
         addImageButton.setVisibility(View.INVISIBLE);
     }
-
 
     // from stackoverflow
     @SuppressLint("Range")

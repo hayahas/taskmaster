@@ -58,9 +58,23 @@
 
 ### Lab 37, 22/11/2023 :
 - User can add an task image while adding the task from his own device
-- If user chose the wrong image ; he can delete it while before saving and choosing another 
+- If user chose the wrong image ; he can delete it while before saving and choosing another
 - In case saved user saved the image, it will be uploaded as file in S3 in aws
 - if no Image added no files will be uploaded on S3
+- 
+### Lab 38, 27/11/2023 :
+
+- User can add title of the new task easily by sharing it from browser or any other app.
+   - Steps :
+     ![Browser Page1](screenshots/step1lab38.png)
+     ![Browser Page2](screenshots/step2lab38.png)
+     ![Add Task page](screenshots/step3addTasklab38.png)
+- User can add image to the new task easily by sharing from the browser instead of saving it on his device.
+     - Steps :
+      ![Browser Page1](screenshots/image1lab38.png)
+      ![Browser Page2](screenshots/image2lab38.png)
+      ![Add Task page](screenshots/image3addTasklab38.png)
+  
 
 ## Screenshots:
 
