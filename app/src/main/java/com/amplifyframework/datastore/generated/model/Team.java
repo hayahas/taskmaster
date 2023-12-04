@@ -214,7 +214,6 @@ public final class Team implements Model {
       return (CopyOfBuilder) super.email(email);
     }
   }
-  
 
   
 }

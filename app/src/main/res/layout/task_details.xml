@@ -32,16 +32,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <Button
-        android:id="@+id/backToHomeFromDetailsBtn"
-        android:layout_width="96dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="200dp"
-        android:backgroundTint="#00BCD4"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="28dp"
+        android:text="Location : "
+        android:textColor="#F44336"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/location"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/taskTitleInput"
@@ -60,12 +63,12 @@
         android:id="@+id/taskBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="64dp"
         android:text="Body"
         android:textColor="#090101"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/taskTitleInput" />
 
@@ -77,19 +80,17 @@
         android:text="State"
         android:textColor="#090101"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/backToHomeFromDetailsBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskBody"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/taskBody" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:text="Task Body :"
         android:textColor="#F44336"
         android:textSize="20sp"
@@ -121,12 +122,10 @@
         android:text="Task State :"
         android:textColor="#F44336"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/backToHomeFromDetailsBtn"
         app:layout_constraintEnd_toStartOf="@+id/taskState"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/taskDate"
@@ -137,8 +136,43 @@
         android:textColor="#0C0202"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.197"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/taskState" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Location"
+        android:textColor="#0C0202"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskDate" />
+
+    <ImageView
+        android:id="@+id/editTaskFromDetails"
+        android:layout_width="35dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="125dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toEndOf="@+id/taskTitleInput"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageView
+        android:id="@+id/homeLogoTaskDetails"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

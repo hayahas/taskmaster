@@ -6,8 +6,8 @@
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 60,
-      "apiKeyExpirationDate": "2024-01-26T12:50:32.754Z",
-      "keyDescription": "adding s3Images"
+      "apiKeyExpirationDate": "2024-01-31T22:48:17.551Z",
+      "keyDescription": "adding location"
     },
     "conflictResolution": {},
     "additionalAuthTypes": []
