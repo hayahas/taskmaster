@@ -23,7 +23,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Task type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Tasks", authRules = {
+@ModelConfig(pluralName = "Tasks",  authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 @Index(name = "teamTasks", fields = {"teamId","name"})
@@ -33,6 +33,8 @@ public final class Task implements Model {
   public static final QueryField DESCRIPTION = field("Task", "description");
   public static final QueryField DATE_CREATED = field("Task", "dateCreated");
   public static final QueryField TASK_STATE = field("Task", "taskState");
+  public static final QueryField TASK_LATITUDE = field("Task", "taskLatitude");
+  public static final QueryField TASK_LONGITUDE = field("Task", "taskLongitude");
   public static final QueryField TASK_IMAGE_S3_KEY = field("Task", "taskImageS3Key");
   public static final QueryField TASK_TEAM = field("Task", "teamId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
@@ -40,8 +42,10 @@ public final class Task implements Model {
   private final @ModelField(targetType="String") String description;
   private final @ModelField(targetType="AWSDateTime") Temporal.DateTime dateCreated;
   private final @ModelField(targetType="taskStateEnums") TaskStateEnums taskState;
+  private final @ModelField(targetType="String") String taskLatitude;
+  private final @ModelField(targetType="String") String taskLongitude;
   private final @ModelField(targetType="String") String taskImageS3Key;
-  private final @ModelField(targetType="Team") @BelongsTo(targetName = "teamId", type = Team.class) Team taskTeam;
+  private final @ModelField(targetType="Team") @BelongsTo(targetName = "teamId",  type = Team.class) Team taskTeam;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   /** @deprecated This API is internal to Amplify and should not be used. */
@@ -70,6 +74,14 @@ public final class Task implements Model {
       return taskState;
   }
   
+  public String getTaskLatitude() {
+      return taskLatitude;
+  }
+  
+  public String getTaskLongitude() {
+      return taskLongitude;
+  }
+  
   public String getTaskImageS3Key() {
       return taskImageS3Key;
   }
@@ -86,12 +98,14 @@ public final class Task implements Model {
       return updatedAt;
   }
   
-  private Task(String id, String name, String description, Temporal.DateTime dateCreated, TaskStateEnums taskState, String taskImageS3Key, Team taskTeam) {
+  private Task(String id, String name, String description, Temporal.DateTime dateCreated, TaskStateEnums taskState, String taskLatitude, String taskLongitude, String taskImageS3Key, Team taskTeam) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.dateCreated = dateCreated;
     this.taskState = taskState;
+    this.taskLatitude = taskLatitude;
+    this.taskLongitude = taskLongitude;
     this.taskImageS3Key = taskImageS3Key;
     this.taskTeam = taskTeam;
   }
@@ -109,6 +123,8 @@ public final class Task implements Model {
               ObjectsCompat.equals(getDescription(), task.getDescription()) &&
               ObjectsCompat.equals(getDateCreated(), task.getDateCreated()) &&
               ObjectsCompat.equals(getTaskState(), task.getTaskState()) &&
+              ObjectsCompat.equals(getTaskLatitude(), task.getTaskLatitude()) &&
+              ObjectsCompat.equals(getTaskLongitude(), task.getTaskLongitude()) &&
               ObjectsCompat.equals(getTaskImageS3Key(), task.getTaskImageS3Key()) &&
               ObjectsCompat.equals(getTaskTeam(), task.getTaskTeam()) &&
               ObjectsCompat.equals(getCreatedAt(), task.getCreatedAt()) &&
@@ -124,6 +140,8 @@ public final class Task implements Model {
       .append(getDescription())
       .append(getDateCreated())
       .append(getTaskState())
+      .append(getTaskLatitude())
+      .append(getTaskLongitude())
       .append(getTaskImageS3Key())
       .append(getTaskTeam())
       .append(getCreatedAt())
@@ -141,6 +159,8 @@ public final class Task implements Model {
       .append("description=" + String.valueOf(getDescription()) + ", ")
       .append("dateCreated=" + String.valueOf(getDateCreated()) + ", ")
       .append("taskState=" + String.valueOf(getTaskState()) + ", ")
+      .append("taskLatitude=" + String.valueOf(getTaskLatitude()) + ", ")
+      .append("taskLongitude=" + String.valueOf(getTaskLongitude()) + ", ")
       .append("taskImageS3Key=" + String.valueOf(getTaskImageS3Key()) + ", ")
       .append("taskTeam=" + String.valueOf(getTaskTeam()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
@@ -169,6 +189,8 @@ public final class Task implements Model {
       null,
       null,
       null,
+      null,
+      null,
       null
     );
   }
@@ -179,6 +201,8 @@ public final class Task implements Model {
       description,
       dateCreated,
       taskState,
+      taskLatitude,
+      taskLongitude,
       taskImageS3Key,
       taskTeam);
   }
@@ -193,6 +217,8 @@ public final class Task implements Model {
     BuildStep description(String description);
     BuildStep dateCreated(Temporal.DateTime dateCreated);
     BuildStep taskState(TaskStateEnums taskState);
+    BuildStep taskLatitude(String taskLatitude);
+    BuildStep taskLongitude(String taskLongitude);
     BuildStep taskImageS3Key(String taskImageS3Key);
     BuildStep taskTeam(Team taskTeam);
   }
@@ -204,18 +230,22 @@ public final class Task implements Model {
     private String description;
     private Temporal.DateTime dateCreated;
     private TaskStateEnums taskState;
+    private String taskLatitude;
+    private String taskLongitude;
     private String taskImageS3Key;
     private Team taskTeam;
     public Builder() {
       
     }
     
-    private Builder(String id, String name, String description, Temporal.DateTime dateCreated, TaskStateEnums taskState, String taskImageS3Key, Team taskTeam) {
+    private Builder(String id, String name, String description, Temporal.DateTime dateCreated, TaskStateEnums taskState, String taskLatitude, String taskLongitude, String taskImageS3Key, Team taskTeam) {
       this.id = id;
       this.name = name;
       this.description = description;
       this.dateCreated = dateCreated;
       this.taskState = taskState;
+      this.taskLatitude = taskLatitude;
+      this.taskLongitude = taskLongitude;
       this.taskImageS3Key = taskImageS3Key;
       this.taskTeam = taskTeam;
     }
@@ -230,6 +260,8 @@ public final class Task implements Model {
           description,
           dateCreated,
           taskState,
+          taskLatitude,
+          taskLongitude,
           taskImageS3Key,
           taskTeam);
     }
@@ -260,6 +292,18 @@ public final class Task implements Model {
     }
     
     @Override
+     public BuildStep taskLatitude(String taskLatitude) {
+        this.taskLatitude = taskLatitude;
+        return this;
+    }
+    
+    @Override
+     public BuildStep taskLongitude(String taskLongitude) {
+        this.taskLongitude = taskLongitude;
+        return this;
+    }
+    
+    @Override
      public BuildStep taskImageS3Key(String taskImageS3Key) {
         this.taskImageS3Key = taskImageS3Key;
         return this;
@@ -283,8 +327,8 @@ public final class Task implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String name, String description, Temporal.DateTime dateCreated, TaskStateEnums taskState, String taskImageS3Key, Team taskTeam) {
-      super(id, name, description, dateCreated, taskState, taskImageS3Key, taskTeam);
+    private CopyOfBuilder(String id, String name, String description, Temporal.DateTime dateCreated, TaskStateEnums taskState, String taskLatitude, String taskLongitude, String taskImageS3Key, Team taskTeam) {
+      super(id, name, description, dateCreated, taskState, taskLatitude, taskLongitude, taskImageS3Key, taskTeam);
       Objects.requireNonNull(name);
     }
     
@@ -309,6 +353,16 @@ public final class Task implements Model {
     }
     
     @Override
+     public CopyOfBuilder taskLatitude(String taskLatitude) {
+      return (CopyOfBuilder) super.taskLatitude(taskLatitude);
+    }
+    
+    @Override
+     public CopyOfBuilder taskLongitude(String taskLongitude) {
+      return (CopyOfBuilder) super.taskLongitude(taskLongitude);
+    }
+    
+    @Override
      public CopyOfBuilder taskImageS3Key(String taskImageS3Key) {
       return (CopyOfBuilder) super.taskImageS3Key(taskImageS3Key);
     }
@@ -320,4 +374,5 @@ public final class Task implements Model {
   }
   
 
+  
 }

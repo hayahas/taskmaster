@@ -76,7 +76,15 @@
      ![Browser Page2](screenshots/image2lab38.png)
      ![Add Task page](screenshots/image3addTasklab38.png)
 
+### Lab 39, 29/11/2023 :
+- Home Icon is added in Task details page, Edit Task page and Add Task page so user can easily return to home.
+- When user is adding new Task will be asked for permission for accessing his location.
+- Whenever user gives taskmaster the access to his location on every task his location will be added
+- User Location will be added on the task details page.
+- User can access the Task Details page by clicking on the task from home.
+- User can edit his task details by clicking on the edit icon beside the task name in task details page.
   
+
 
 ## Screenshots:
 
@@ -90,15 +98,17 @@
 ![Login Page](screenshots/login36.png)
 ### Home page after login
 ![Main Page After Login](screenshots/homeafterlogin36.png)
+### Add Task page asking for Location Permission
+![Add Task Page asking for Location Permission](screenshots/askPermmision.png)
 ### Add Task page
-![Add Task Page](screenshots/addTask37.png) 
+![Add Task Page](screenshots/addTask39.png)
 ### All Tasks page
 ![All Tasks Page](screenshots/sc2.png)
 ### Settings page
 ![Settings Page](screenshots/settings33.png)
 ### Edit Task page
-![Edit Task Page](screenshots/edittask34.png) 
+![Edit Task Page](screenshots/edittask39.png) 
 ### Task Details page
-![Task Details Page](screenshots/details32.png)
+![Task Details Page](screenshots/taskdetails39.png)
 
 

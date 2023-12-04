@@ -7,9 +7,9 @@
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDate": "2024-01-26T12:50:32.754Z",
+              "apiKeyExpirationDate": "2024-01-31T22:48:17.551Z",
               "apiKeyExpirationDays": 60,
-              "description": "adding s3Images"
+              "description": "adding location"
             },
             "authenticationType": "API_KEY"
           }

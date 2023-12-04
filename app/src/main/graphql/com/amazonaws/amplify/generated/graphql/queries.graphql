@@ -37,6 +37,8 @@ query GetTask($id: ID!) {
     description
     dateCreated
     taskState
+    taskLatitude
+    taskLongitude
     taskImageS3Key
     teamId
     taskTeam {
@@ -65,6 +67,8 @@ query ListTasks(
       description
       dateCreated
       taskState
+      taskLatitude
+      taskLongitude
       taskImageS3Key
       teamId
       createdAt
@@ -132,6 +136,8 @@ query TasksByTeamIdAndName(
       description
       dateCreated
       taskState
+      taskLatitude
+      taskLongitude
       taskImageS3Key
       teamId
       createdAt

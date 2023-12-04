@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TASK_BODY_TAG="body";
     public static final String TASK_STATE_TAG="state";
     public static final String TASK_DATE_CREATED="date";
+    public static final String LOCATION_TAG="location";
     public final String TAG = "mainActivity";
 
     Button addTaskButton;

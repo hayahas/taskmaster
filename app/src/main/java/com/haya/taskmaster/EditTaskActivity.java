@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
@@ -17,6 +19,7 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.TaskStateEnums;
 import com.amplifyframework.datastore.generated.model.Team;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,8 @@ public class EditTaskActivity extends AppCompatActivity {
     CompletableFuture<Task> taskCompletableFuture = null ;
     CompletableFuture<List<Team>> teamsCompletableFuture = null ;
      Task updatedTask ;
+
+    ImageView backToHome;
     private Spinner newTaskStateSpinner = null;
     private  Spinner newTaskTeamSpinner = null;
     private EditText nameEditText;
@@ -38,6 +43,8 @@ public class EditTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_task);
+
+
 
         taskCompletableFuture = new CompletableFuture<>();
         teamsCompletableFuture = new CompletableFuture<>();
@@ -49,8 +56,20 @@ public class EditTaskActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setupUI();
+        setupBackToHomeBtn();
         setUpDeleteBtn();
         setUpSaveBtn();
+    }
+
+    private void setupBackToHomeBtn(){
+        backToHome= (ImageView) findViewById(R.id.homeLogoEditTask);
+        backToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backToHome=new Intent(EditTaskActivity.this,MainActivity.class);
+                startActivity(backToHome);
+            }
+        });
     }
     private void setupUI() {
 
@@ -189,7 +208,7 @@ public class EditTaskActivity extends AppCompatActivity {
                     ModelMutation.update(newTask),
                     success -> {
                         Log.i(TAG,"Task updated Successfully");
-//                        Snackbar.make(findViewById(R.id.edit_task), "Task updated!", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(R.id.editTaskActivity), "Task updated!", Snackbar.LENGTH_SHORT).show();
 
                     },
                     failure -> Log.i(TAG,"Failed to update task" + failure)
