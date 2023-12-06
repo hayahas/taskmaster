@@ -86,7 +86,7 @@
 
 ### Lab 41, 4/12/2023 :
 - Analytics added.
-- Sound icon beside task title in Edit Task page an Task Details page is added.
+- Sound icon beside task title in Edit Task page and Task Details page is added.
 - Whenever user clicks on sound icon text will be converted to Speech so the user can hear title's pronunciation.
 - Feature for blind People and disabled one's to deal with taskmaster.
 
