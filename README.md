@@ -83,7 +83,12 @@
 - User Location will be added on the task details page.
 - User can access the Task Details page by clicking on the task from home.
 - User can edit his task details by clicking on the edit icon beside the task name in task details page.
-  
+
+### Lab 41, 4/12/2023 :
+- Analytics added.
+- Sound icon beside task title in Edit Task page is added.
+- Whenever user clicks on sound icon text will be converted to Speech so the user can hear title's pronunciation.
+- Feature for blind People and disabled one's to deal with taskmaster.
 
 
 ## Screenshots:
@@ -107,7 +112,7 @@
 ### Settings page
 ![Settings Page](screenshots/settings33.png)
 ### Edit Task page
-![Edit Task Page](screenshots/edittask39.png) 
+![Edit Task Page](screenshots/edit41.png) 
 ### Task Details page
 ![Task Details Page](screenshots/taskdetails39.png)
 

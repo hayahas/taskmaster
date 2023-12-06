@@ -4,6 +4,7 @@ package com.haya.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,12 @@ import com.amplifyframework.datastore.generated.model.TaskStateEnums;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -32,12 +39,14 @@ public class EditTaskActivity extends AppCompatActivity {
     CompletableFuture<Task> taskCompletableFuture = null ;
     CompletableFuture<List<Team>> teamsCompletableFuture = null ;
      Task updatedTask ;
-
     ImageView backToHome;
+    ImageView textToSpeech;
     private Spinner newTaskStateSpinner = null;
     private  Spinner newTaskTeamSpinner = null;
     private EditText nameEditText;
     private EditText descriptionEditText;
+
+    private MediaPlayer mp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +58,21 @@ public class EditTaskActivity extends AppCompatActivity {
         taskCompletableFuture = new CompletableFuture<>();
         teamsCompletableFuture = new CompletableFuture<>();
 
+        mp = new MediaPlayer();
 
+        setupBackToHomeBtn();
+        setupTextToSpeechBtn();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         setupUI();
-        setupBackToHomeBtn();
         setUpDeleteBtn();
         setUpSaveBtn();
     }
+
+
 
     private void setupBackToHomeBtn(){
         backToHome= (ImageView) findViewById(R.id.homeLogoEditTask);
@@ -241,5 +254,38 @@ public class EditTaskActivity extends AppCompatActivity {
         ));
     }
 
+    private void setupTextToSpeechBtn(){
+
+        textToSpeech = (ImageView) findViewById(R.id.textToSpeechLogoEditPage);
+
+        textToSpeech.setOnClickListener(b -> {
+            String taskTitle = ((EditText) findViewById(R.id.editTextNewTaskTitle)).getText().toString();
+
+            Amplify.Predictions.convertTextToSpeech(
+                    taskTitle,
+                    success -> playAudio(success.getAudioData()),
+                    failure -> Log.e(TAG, "Failed to convert Text to Speech",failure)
+            );
+
+        });
+    }
+
+    private void playAudio(InputStream data) {
+        File mp3File = new File(getCacheDir(), "audio.mp3");
+
+        try (OutputStream out = new FileOutputStream(mp3File)) {
+            byte[] buffer = new byte[8 * 1_024];
+            int bytesRead;
+            while ((bytesRead = data.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+            mp.reset();
+            mp.setOnPreparedListener(MediaPlayer::start);
+            mp.setDataSource(new FileInputStream(mp3File).getFD());
+            mp.prepareAsync();
+        } catch (IOException error) {
+            Log.e("MyAmplifyApp", "Error writing audio file", error);
+        }
+    }
 
 }
