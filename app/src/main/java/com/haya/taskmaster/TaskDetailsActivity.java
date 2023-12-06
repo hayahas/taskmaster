@@ -9,13 +9,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amplifyframework.core.Amplify;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -24,7 +27,12 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.CancellationToken;
 import com.google.android.gms.tasks.OnTokenCanceledListener;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Locale;
 
 public class TaskDetailsActivity extends AppCompatActivity {
@@ -37,6 +45,10 @@ public class TaskDetailsActivity extends AppCompatActivity {
      TextView locationTextView;
     Geocoder geocoder = null;
     SharedPreferences sharedPreferences;
+
+    ImageView textToSpeech;
+
+    private MediaPlayer mp = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +84,9 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
 
+       mp = new MediaPlayer();
+
+        setupTextToSpeechBtn();
 
     }
 
@@ -206,5 +221,39 @@ public class TaskDetailsActivity extends AppCompatActivity {
            startActivity(goTEditTask);
 
        });
+    }
+
+    private void setupTextToSpeechBtn(){
+
+        textToSpeech = (ImageView) findViewById(R.id.textToSpeechLogoTaskDetailsPage);
+
+        textToSpeech.setOnClickListener(b -> {
+            String taskTitle = ((TextView) findViewById(R.id.taskTitleInput)).getText().toString();
+
+            Amplify.Predictions.convertTextToSpeech(
+                    taskTitle,
+                    success -> playAudio(success.getAudioData()),
+                    failure -> Log.e(TAG, "Failed to convert Text to Speech",failure)
+            );
+
+        });
+    }
+
+    private void playAudio(InputStream data) {
+        File mp3File = new File(getCacheDir(), "audio.mp3");
+
+        try (OutputStream out = new FileOutputStream(mp3File)) {
+            byte[] buffer = new byte[8 * 1_024];
+            int bytesRead;
+            while ((bytesRead = data.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+            mp.reset();
+            mp.setOnPreparedListener(MediaPlayer::start);
+            mp.setDataSource(new FileInputStream(mp3File).getFD());
+            mp.prepareAsync();
+        } catch (IOException error) {
+            Log.e("MyAmplifyApp", "Error writing audio file", error);
+        }
     }
 }
