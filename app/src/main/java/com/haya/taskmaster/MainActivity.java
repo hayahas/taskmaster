@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.analytics.AnalyticsEvent;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
@@ -31,6 +32,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -73,10 +75,19 @@ public class MainActivity extends AppCompatActivity {
         setupLogoutBtn();
         setupSignupBtn();
         setupLoginBtn();
-//        setupFileS3();
+        setupFileS3();
+        setupAnalytics();
     }
 
+    private void setupAnalytics(){
+        AnalyticsEvent event = AnalyticsEvent.builder()
+                .name("openedApp")
+                .addProperty("time", Long.toString(new Date().getTime()))
+                .addProperty("trackingEvent","mainActivityOpened")
+                .build();
 
+        Amplify.Analytics.recordEvent(event);
+    }
     private void setupFileS3(){
 
         String emptyFileName = "emptyFileName";
